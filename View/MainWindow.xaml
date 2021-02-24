@@ -1,0 +1,19 @@
+﻿<Window x:Class="WpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namesapce:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:WpfApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Activated="WindowActivated" MouseMove="DrawingRect" MouseDown="StartDrawRect" MouseUp="StopDrawRect">
+    <Grid Name="panel" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <Image VerticalAlignment="Top" x:Name="img" Source="批注 2021-02-22 132339.jpg" Margin="0,0,0,0"/>
+        <Canvas Name = "canvas" HorizontalAlignment="Left" Height="419" VerticalAlignment="Top" Width="792" Background="#62343434" Margin="0,0,-136.343,0"/>
+    </Grid>
+    <Window.Resources>
+        <ResourceDictionary>
+            
+        </ResourceDictionary>
+    </Window.Resources>
+</Window>
