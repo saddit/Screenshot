@@ -25,8 +25,6 @@ namespace WpfApp.View
         public ImgBox(ImageSource image, double width, double height)
         {
             InitializeComponent();
-            this.WindowStyle = WindowStyle.None;
-            // this.ResizeMode = ResizeMode.NoResize;
             this.Width = width;
             this.Height = height;
             img.Width = width;

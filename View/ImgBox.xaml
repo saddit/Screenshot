@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp.View"
         mc:Ignorable="d"
-        Title="ImgBox" MouseMove="WindowDrag" Topmost="True" SizeChanged="img_SizeChanged" Top="0" Left="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+        Title="ImgBox" MouseMove="WindowDrag" Topmost="True" SizeChanged="img_SizeChanged" WindowStyle="None" d:DesignHeight="494.681" Background="White">
     <Grid VerticalAlignment="Top">
         <Image Name="img" HorizontalAlignment="Left" VerticalAlignment="Top" Source="批注 2021-02-22 132339.jpg" Panel.ZIndex="2000" RenderTransformOrigin="0,0"/>
         <Grid.ContextMenu>

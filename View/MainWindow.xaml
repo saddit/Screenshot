@@ -6,14 +6,9 @@
         xmlns:sys="clr-namesapce:System;assembly=mscorlib"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Activated="WindowActivated" MouseMove="DrawingRect" MouseDown="StartDrawRect" MouseUp="StopDrawRect">
+        Title="MainWindow" Height="450" Width="800" Activated="WindowActivated" MouseMove="DrawingRect" MouseDown="StartDrawRect" MouseUp="StopDrawRect" WindowStyle="None">
     <Grid Name="panel" HorizontalAlignment="Left" VerticalAlignment="Top">
         <Image VerticalAlignment="Top" x:Name="img" Source="批注 2021-02-22 132339.jpg" Margin="0,0,0,0"/>
         <Canvas Name = "canvas" HorizontalAlignment="Left" Height="419" VerticalAlignment="Top" Width="792" Background="#62343434" Margin="0,0,-136.343,0"/>
     </Grid>
-    <Window.Resources>
-        <ResourceDictionary>
-            
-        </ResourceDictionary>
-    </Window.Resources>
 </Window>

@@ -31,8 +31,6 @@ namespace WpfApp
             InitializeComponent();
             InitNotifyIcon();
 
-            // 去边框
-            this.WindowStyle = WindowStyle.None;
             this.ResizeMode = ResizeMode.NoResize;
 
             //全屏
@@ -101,14 +99,14 @@ namespace WpfApp
                 BitmapSizeOptions.FromEmptyOptions());
         }
 
-        private System.Windows.Point begin;
+        private System.Windows.Point center;
         private System.Windows.Shapes.Rectangle capture;
 
         private void StartDrawRect(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
             {
-                begin = e.GetPosition(this);
+                center = e.GetPosition(this);
                 System.Windows.Shapes.Rectangle rect = new System.Windows.Shapes.Rectangle();
                 rect.Fill = new SolidColorBrush(System.Windows.Media.Color.FromArgb(0, 255, 255, 255));
                 rect.Width = 0;
@@ -116,8 +114,8 @@ namespace WpfApp
                 rect.Stroke = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 255, 0, 0));
                 rect.StrokeDashArray.Add(3.0);
                 _ = canvas.Children.Add(rect);
-                Canvas.SetLeft(rect, begin.X);
-                Canvas.SetTop(rect, begin.Y);
+                Canvas.SetLeft(rect, center.X);
+                Canvas.SetTop(rect, center.Y);
                 capture = rect;
             }
             else if (e.ChangedButton == MouseButton.Right)
@@ -131,32 +129,38 @@ namespace WpfApp
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                System.Windows.Point end = e.GetPosition(this);
-                capture.Width = Math.Abs(end.X - begin.X);
-                capture.Height = Math.Abs(end.Y - begin.Y);
+                System.Windows.Point mouse = e.GetPosition(this);
+                System.Windows.Point[] be = GetBeginEnd(mouse, center);
+                capture.Width = Math.Abs(be[1].X - be[0].X);
+                capture.Height = Math.Abs(be[1].Y - be[0].Y);
+                Canvas.SetLeft(capture, be[0].X);
+                Canvas.SetTop(capture, be[0].Y);
             }
+        }
+
+        private System.Windows.Point[] GetBeginEnd(System.Windows.Point p1, System.Windows.Point p2)
+        {
+            List<double> dx = new List<double> { p1.X, p2.X };
+            List<double> dy = new List<double> { p1.Y, p2.Y };
+            dx.Sort();
+            dy.Sort();
+            System.Windows.Point[] be = new System.Windows.Point[2];
+            be[0] = new System.Windows.Point(dx[0], dy[0]);
+            be[1] = new System.Windows.Point(dx[1], dy[1]);
+            return be;
         }
 
         private void StopDrawRect(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
             {
-                System.Windows.Point end = e.GetPosition(this);
-                List<double> dx = new List<double> { begin.X, end.X };
-                List<double> dy = new List<double> { begin.Y, end.Y };
-                dx.Sort();
-                dy.Sort();
-                begin.X = dx[0];
-                begin.Y = dy[0];
-                Canvas.SetLeft(capture, begin.X);
-                Canvas.SetTop(capture, begin.Y);
                 EnumAllBox("show");
-                NewImgBox();
+                NewImgBox(GetBeginEnd(e.GetPosition(this), center)[0]);
                 hidden();
             }
         }
 
-        private void hidden()
+        private void hidden() 
         {
             canvas.Children.Clear();
             this.Hide();
@@ -166,10 +170,9 @@ namespace WpfApp
 
         private void EnumAllBox(string op)
         {
-            List<int> unvalidIndex = new List<int>();
-            for (int i = 0; i<hasOpen.Count; i++)
+            List<View.ImgBox> unvalidItem = new List<View.ImgBox>();
+            foreach (View.ImgBox ib in hasOpen)
             {
-                View.ImgBox ib = hasOpen[i];
                 try
                 {
                     switch (op)
@@ -181,19 +184,20 @@ namespace WpfApp
                 }
                 catch (InvalidOperationException)
                 {
-                    unvalidIndex.Add(i);
+                    unvalidItem.Add(ib);
                 }
             }
-            foreach (int i in unvalidIndex)
+            foreach (View.ImgBox i in unvalidItem)
             {
-                hasOpen.RemoveAt(i);
+                hasOpen.Remove(i);
             }
         }
 
-        private void NewImgBox()
+        private void NewImgBox(System.Windows.Point begin)
         {
+
             Int32Rect region = new Int32Rect((int)begin.X, (int)begin.Y, (int)capture.Width, (int)capture.Height);
-            View.ImgBox win = new WpfApp.View.ImgBox(
+            View.ImgBox win = new View.ImgBox(
                 new CroppedBitmap(img.Source as BitmapSource, region),
                 capture.Width, capture.Height
             );
