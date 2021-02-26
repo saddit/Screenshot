@@ -5,11 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp.View"
         mc:Ignorable="d"
-        Title="ImgBox" MouseMove="WindowDrag" Topmost="True" SizeChanged="img_SizeChanged" WindowStyle="None" d:DesignHeight="494.681" Background="White">
-    <Grid VerticalAlignment="Top">
-        <Image Name="img" HorizontalAlignment="Left" VerticalAlignment="Top" Source="批注 2021-02-22 132339.jpg" Panel.ZIndex="2000" RenderTransformOrigin="0,0"/>
+        Title="ImgBox" MouseMove="WindowDrag" Topmost="True" SizeChanged="img_SizeChanged" WindowStyle="None" d:DesignHeight="494.681" Background="White"
+        ResizeMode="NoResize" BorderThickness="0.5">
+    <Grid VerticalAlignment="Top" MouseWheel="Grid_MouseWheel">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="359*"/>
+            <ColumnDefinition Width="25*"/>
+        </Grid.ColumnDefinitions>
+        <Image Name="img" HorizontalAlignment="Left" VerticalAlignment="Top" Source="批注 2021-02-22 132339.jpg" Panel.ZIndex="2000" RenderTransformOrigin="0,0" Grid.ColumnSpan="2" Margin="0,0,0,-32"/>
         <Grid.ContextMenu>
             <ContextMenu>
+                <MenuItem Name="CopyItem" Header="复制" Click="CopyItem_Click" />
+                <MenuItem Name="SaveItem" Header="保存" Click="SaveItem_Click" />
                 <MenuItem Name="ExitItem" Header="退出" Click="ExitItem_Click" />
             </ContextMenu>
         </Grid.ContextMenu>

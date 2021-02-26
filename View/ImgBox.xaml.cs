@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.Win32;
+using System;
+using System.ComponentModel;
+using System.IO;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace WpfApp.View
 {
@@ -27,6 +22,7 @@ namespace WpfApp.View
             InitializeComponent();
             this.Width = width;
             this.Height = height;
+            this.MaxHeight = SystemParameters.PrimaryScreenHeight;
             img.Width = width;
             img.Height = height;
             scale = width / height;
@@ -44,11 +40,49 @@ namespace WpfApp.View
             this.Close();
         }
 
+        private void CopyItem_Click(object sender, RoutedEventArgs e)
+        {
+            Clipboard.SetImage(img.Source as BitmapSource);
+        }
+
+        private void SaveItem_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Image Files (*.bmp, *.png, *.jpg)|*.bmp;*.png;*.jpg | All Files | *.*";
+            sfd.RestoreDirectory = true;//保存对话框是否记忆上次打开的目录
+            if (sfd.ShowDialog().GetValueOrDefault())
+            {
+                var encoder = new PngBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create((BitmapSource)img.Source));
+                using (FileStream stream = new FileStream(sfd.FileName, FileMode.Create))
+                {
+                    encoder.Save(stream);
+                }   
+            }
+        }
+
         private void img_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             img.Width = e.NewSize.Width;
             img.Height = e.NewSize.Height;
         }
 
+        private void Grid_MouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            double w = this.Width;
+            if (e.Delta > 0)
+            {
+                w *= 1.15;
+            }
+            else
+            {
+                w *= 0.85;
+            }
+            if (w / scale <= MaxHeight)
+            {
+                this.Width = w;
+                this.Height = this.Width / scale;
+            }
+        }
     }
 }

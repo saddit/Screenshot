@@ -63,7 +63,7 @@ namespace WpfApp
             showAllItem.Click += new EventHandler((o, e) => EnumAllBox("show"));
 
             //将上面的自选项加入到parentMenuitem中。
-            System.Windows.Forms.MenuItem[] parentMenuitem = new System.Windows.Forms.MenuItem[] { quitMenuItem, hideAllItem, showAllItem };
+            System.Windows.Forms.MenuItem[] parentMenuitem = new System.Windows.Forms.MenuItem[] { hideAllItem, showAllItem, quitMenuItem };
             //为notifyIconContextMenu。
             notifyIcon.ContextMenu = new System.Windows.Forms.ContextMenu(parentMenuitem);
             this.ShowInTaskbar = false;
