@@ -8,7 +8,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" Activated="WindowActivated" MouseMove="DrawingRect" MouseDown="StartDrawRect" MouseUp="StopDrawRect" WindowStyle="None">
     <Grid Name="panel" HorizontalAlignment="Left" VerticalAlignment="Top">
-        <Image VerticalAlignment="Top" x:Name="img" Source="批注 2021-02-22 132339.jpg" Margin="0,0,0,0"/>
-        <Canvas Name = "canvas" HorizontalAlignment="Left" Height="419" VerticalAlignment="Top" Width="792" Background="#62343434" Margin="0,0,-136.343,0"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="345*"/>
+            <ColumnDefinition Width="311*"/>
+        </Grid.ColumnDefinitions>
+        <Image VerticalAlignment="Top" x:Name="img" Source="测试用.jpg" Margin="0,0,0,0" Grid.ColumnSpan="2" Stretch="UniformToFill"/>
+        <Canvas Name = "canvas" HorizontalAlignment="Left" Height="439" VerticalAlignment="Top" Width="790" Background="#62343434" Margin="0,0,-134,-20" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>

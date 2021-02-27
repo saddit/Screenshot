@@ -1,21 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Drawing;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Forms;
-using System.Drawing;
-using System.Windows.Interop;
-using System.Threading;
 
 namespace WpfApp
 {
@@ -72,6 +64,7 @@ namespace WpfApp
         private void quitMenuItem_Click(object sender, EventArgs e)
         {
             EnumAllBox("close");
+            notifyIcon.Dispose();
             this.Close();
         }
 
@@ -160,7 +153,7 @@ namespace WpfApp
             }
         }
 
-        private void hidden() 
+        private void hidden()
         {
             canvas.Children.Clear();
             this.Hide();
@@ -212,7 +205,7 @@ namespace WpfApp
             if (e.Button == MouseButtons.Left)
             {
                 this.Show();
-            }  
+            }
         }
     }
 }

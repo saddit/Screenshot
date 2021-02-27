@@ -8,11 +8,15 @@
         Title="ImgBox" MouseMove="WindowDrag" Topmost="True" SizeChanged="img_SizeChanged" WindowStyle="None" d:DesignHeight="494.681" Background="White"
         ResizeMode="NoResize" BorderThickness="0.5">
     <Grid VerticalAlignment="Top" MouseWheel="Grid_MouseWheel">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="401*"/>
+            <RowDefinition Height="94*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="359*"/>
             <ColumnDefinition Width="25*"/>
         </Grid.ColumnDefinitions>
-        <Image Name="img" HorizontalAlignment="Left" VerticalAlignment="Top" Source="批注 2021-02-22 132339.jpg" Panel.ZIndex="2000" RenderTransformOrigin="0,0" Grid.ColumnSpan="2" Margin="0,0,0,-32"/>
+        <Image Name="img" HorizontalAlignment="Left" VerticalAlignment="Top" Source="测试用.jpg" Panel.ZIndex="2000" RenderTransformOrigin="0,0" Grid.ColumnSpan="2" Margin="0,0,-57,-32" Stretch="UniformToFill" Grid.RowSpan="2"/>
         <Grid.ContextMenu>
             <ContextMenu>
                 <MenuItem Name="CopyItem" Header="复制" Click="CopyItem_Click" />
