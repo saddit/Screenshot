@@ -164,7 +164,7 @@
     <Folder Include="ViewMoudle\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\批注 2021-02-22 132339.jpg" />
+    <Resource Include="View\测试用.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\logo.ico" />
