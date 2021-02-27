@@ -5,18 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp.View"
         mc:Ignorable="d"
-        Title="ImgBox" MouseMove="WindowDrag" Topmost="True" SizeChanged="img_SizeChanged" WindowStyle="None" d:DesignHeight="494.681" Background="White"
+        Title="ImgBox" MouseMove="WindowDrag" Topmost="True" SizeChanged="img_SizeChanged" WindowStyle="None" Background="White"
         ResizeMode="NoResize" BorderThickness="0.5">
     <Grid VerticalAlignment="Top" MouseWheel="Grid_MouseWheel">
         <Grid.RowDefinitions>
-            <RowDefinition Height="401*"/>
-            <RowDefinition Height="94*"/>
+            <RowDefinition/>
+            <RowDefinition Height="0*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="359*"/>
-            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <Image Name="img" HorizontalAlignment="Left" VerticalAlignment="Top" Source="测试用.jpg" Panel.ZIndex="2000" RenderTransformOrigin="0,0" Grid.ColumnSpan="2" Margin="0,0,-57,-32" Stretch="UniformToFill" Grid.RowSpan="2"/>
+        <Image Name="img" HorizontalAlignment="Left" VerticalAlignment="Top" Source="测试用.jpg" Panel.ZIndex="2000" RenderTransformOrigin="0,0" Stretch="Fill" Height="536" Width="768" Margin="0,0,0,-2" Grid.RowSpan="2"/>
         <Grid.ContextMenu>
             <ContextMenu>
                 <MenuItem Name="CopyItem" Header="复制" Click="CopyItem_Click" />

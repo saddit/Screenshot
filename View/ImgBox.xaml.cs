@@ -23,8 +23,10 @@ namespace WpfApp.View
             this.Width = width;
             this.Height = height;
             this.MaxHeight = SystemParameters.PrimaryScreenHeight;
+
             img.Width = width;
             img.Height = height;
+
             scale = width / height;
             img.Source = image;
         }
