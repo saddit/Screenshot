@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -33,6 +35,43 @@ namespace WpfApp
             var assemblyRawBytes = new byte[stream.Length];
             stream.Read(assemblyRawBytes, 0, assemblyRawBytes.Length);
             return Assembly.Load(assemblyRawBytes);
+        }
+
+        [DllImport("User32.dll")]
+        private static extern bool ShowWindowAsync(IntPtr hWnd, int cmdShow);
+
+        [DllImport("User32.dll")]
+        private static extern bool SetForegroundWindow(IntPtr hWnd);
+
+        private const int WS_SHOWNORMAL = 1;
+
+        private void HandleOtherProcess(IntPtr hWnd)
+        {
+            bool i = ShowWindowAsync(hWnd, WS_SHOWNORMAL);
+            bool j = SetForegroundWindow(hWnd);
+            Console.WriteLine("i:" + i + ",j:" + j);
+        }
+
+        private Process CheckProcess()
+        {
+            Process current = Process.GetCurrentProcess();
+            Process[] others = Process.GetProcessesByName(current.ProcessName);
+            foreach (var i in others)
+            {
+                if (i.Id != current.Id) return i;
+            }
+            return null;
+        }
+
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+            Process other = CheckProcess();
+            if (other != null)
+            {
+                //HandleOtherProcess(other.MainWindowHandle);
+                MessageBox.Show("应用程序已经在运行了", "请勿多开");
+                Shutdown();
+            }
         }
     }
 }

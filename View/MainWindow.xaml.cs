@@ -64,7 +64,6 @@ namespace WpfApp
         private void quitMenuItem_Click(object sender, EventArgs e)
         {
             EnumAllBox("close");
-            notifyIcon.Dispose();
             this.Close();
         }
 
@@ -194,10 +193,10 @@ namespace WpfApp
                 new CroppedBitmap(img.Source as BitmapSource, region),
                 capture.Width, capture.Height
             );
-            hasOpen.Add(win);
             win.Show();
             win.Top = begin.Y;
             win.Left = begin.X;
+            hasOpen.Add(win);
         }
 
         private void Awake(object sender, System.Windows.Forms.MouseEventArgs e)
@@ -206,6 +205,11 @@ namespace WpfApp
             {
                 this.Show();
             }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            notifyIcon.Dispose();
         }
     }
 }

@@ -6,15 +6,15 @@
         xmlns:local="clr-namespace:WpfApp.View"
         mc:Ignorable="d"
         Title="ImgBox" MouseMove="WindowDrag" Topmost="True" SizeChanged="img_SizeChanged" WindowStyle="None" Background="White"
-        ResizeMode="NoResize" BorderThickness="0.5">
-    <Grid VerticalAlignment="Top" MouseWheel="Grid_MouseWheel" Height="581" Margin="0,0,0,0">
-        <Image Name="img" Source="测试用.jpg" Panel.ZIndex="2000" RenderTransformOrigin="0,0" Margin="0,0,0,0"/>
-        <Grid.ContextMenu>
-            <ContextMenu>
-                <MenuItem Name="CopyItem" Header="复制" Click="CopyItem_Click" />
-                <MenuItem Name="SaveItem" Header="保存" Click="SaveItem_Click" />
-                <MenuItem Name="ExitItem" Header="退出" Click="ExitItem_Click" />
-            </ContextMenu>
-        </Grid.ContextMenu>
+        ResizeMode="NoResize" BorderThickness="0.5" Height="424" Width="663">
+    <Grid VerticalAlignment="Top" MouseWheel="Grid_MouseWheel" Margin="0,0,0,0">
+        <Image Name="img" Source="测试用.jpg" Panel.ZIndex="2000" RenderTransformOrigin="0,0" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
     </Grid>
+    <Window.ContextMenu>
+        <ContextMenu>
+            <MenuItem Name="CopyItem" Header="复制" Click="CopyItem_Click" />
+            <MenuItem Name="SaveItem" Header="保存" Click="SaveItem_Click" />
+            <MenuItem Name="ExitItem" Header="退出" Click="ExitItem_Click" />
+        </ContextMenu>
+    </Window.ContextMenu>
 </Window>

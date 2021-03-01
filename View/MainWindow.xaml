@@ -6,7 +6,7 @@
         xmlns:sys="clr-namesapce:System;assembly=mscorlib"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Activated="WindowActivated" MouseMove="DrawingRect" MouseDown="StartDrawRect" MouseUp="StopDrawRect" WindowStyle="None">
+        Title="MainWindow" Height="450" Width="800" Activated="WindowActivated" MouseMove="DrawingRect" MouseDown="StartDrawRect" MouseUp="StopDrawRect" WindowStyle="None" Closing="Window_Closing">
     <Grid Name="panel" HorizontalAlignment="Left" VerticalAlignment="Top">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="345*"/>
