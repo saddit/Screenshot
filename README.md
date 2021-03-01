@@ -16,3 +16,7 @@
 
 - 项目为 WPF Application
 - 部分代码使用了Winform下的API
+
+### Future
+
+- 加入画笔功能，实现在多个窗口上自由标注信息
