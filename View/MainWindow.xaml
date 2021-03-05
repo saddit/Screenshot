@@ -13,6 +13,6 @@
             <ColumnDefinition Width="311*"/>
         </Grid.ColumnDefinitions>
         <Image VerticalAlignment="Top" x:Name="img" Source="测试用.jpg" Margin="0,0,0,0" Grid.ColumnSpan="2"/>
-        <Canvas Name = "canvas" HorizontalAlignment="Left" Height="439" VerticalAlignment="Top" Width="790" Background="#62636363" Margin="0,0,-134,-20" Grid.ColumnSpan="2"/>
+        <Canvas Name = "canvas" HorizontalAlignment="Left" Height="439" VerticalAlignment="Top" Width="791.546" Background="#62636363" Margin="0,0,-99.898,0" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>

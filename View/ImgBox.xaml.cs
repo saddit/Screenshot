@@ -10,12 +10,22 @@ using System.Windows.Media.Imaging;
 
 namespace WpfApp.View
 {
+
+    enum Mode
+    {
+        Drag,
+        Pen,
+        Eraser,
+    }
+
     /// <summary>
     /// ImgBox.xaml 的交互逻辑
     /// </summary>
     public partial class ImgBox : Window
     {
         private double scale;
+        private Mode mode = Mode.Drag;
+        private double rw;
 
         public ImgBox(ImageSource image, double width, double height)
         {
@@ -29,12 +39,21 @@ namespace WpfApp.View
 
             scale = width / height;
             img.Source = image;
+
+            rw = this.Bar.Width;
+            this.Bar.Width = 15;
         }
 
-        private void WindowDrag(object sender, MouseEventArgs e)
+        private void Mouse_Move(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
-                this.DragMove();
+            {
+                if (mode.Equals(Mode.Drag))
+                {
+                    this.DragMove();
+                }
+            }
+
         }
 
         private void ExitItem_Click(object sender, RoutedEventArgs e)
@@ -50,7 +69,7 @@ namespace WpfApp.View
         private void SaveItem_Click(object sender, RoutedEventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "Image Files (*.bmp, *.png, *.jpg)|*.bmp;*.png;*.jpg | All Files | *.*";
+            sfd.Filter = "Image Files (*.png, *.bmp, *.jpg)|*.png;*.bmp;*.jpg | All Files | *.*";
             sfd.RestoreDirectory = true;//保存对话框是否记忆上次打开的目录
             if (sfd.ShowDialog().GetValueOrDefault())
             {
@@ -85,6 +104,11 @@ namespace WpfApp.View
                 this.Width = w;
                 this.Height = this.Width / scale;
             }
+        }
+
+        private void ClearItem_Click(object sender, RoutedEventArgs e)
+        {
+            this.Panel.Children.Clear();
         }
     }
 }

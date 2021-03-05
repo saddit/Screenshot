@@ -5,13 +5,53 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp.View"
         mc:Ignorable="d"
-        Title="ImgBox" MouseMove="WindowDrag" Topmost="True" SizeChanged="img_SizeChanged" WindowStyle="None" Background="White"
+        KeyDown="Bar_KeyDown"
+        Title="ImgBox" MouseMove="Mouse_Move" Topmost="True" SizeChanged="img_SizeChanged" WindowStyle="None" Background="{x:Null}"
         ResizeMode="NoResize" BorderThickness="0.5" Height="424" Width="663">
+    <Window.Resources>
+        <Style x:Key="MyButton" TargetType="{x:Type Button}">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderThickness="0" BorderBrush="Black" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.8" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Opacity" Value="0.5"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid VerticalAlignment="Top" MouseWheel="Grid_MouseWheel" Margin="0,0,0,0">
-        <Image Name="img" Source="测试用.jpg" Panel.ZIndex="2000" RenderTransformOrigin="0,0" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Image x:Name="img" Source="测试用.jpg" Panel.ZIndex="2000" RenderTransformOrigin="0,0" Margin="0.083,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="2" Height="423" Width="661.917"/>
+        <Canvas x:Name="Panel" HorizontalAlignment="Left" Height="423" Margin="0.083,0,0,0" VerticalAlignment="Top" Width="661.917" Panel.ZIndex="2000"/>
+        <Viewbox HorizontalAlignment="Left" Height="49" VerticalAlignment="Top" Width="171.707" Panel.ZIndex="2000">
+            <ToolBar ToolBarTray.IsLocked="True" x:Name="Bar" HorizontalAlignment="Left" Height="49" VerticalAlignment="Top" Width="171.707" Background="White" Cursor="Hand" MouseEnter="Bar_MouseEnter" MouseLeave="Bar_MouseLeave">
+                <Button x:Name="Pen" Content="" Height="42" VerticalAlignment="Center" Width="72" Margin="0" Cursor="Hand" IsTabStop="False" Style="{DynamicResource MyButton}" Click="Pen_Click" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/penIcon.png" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <Button x:Name="Eraser" Content="" VerticalAlignment="Center" Cursor="Hand" Style="{DynamicResource MyButton}" Width="72" Height="42" Click="Eraser_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/eraserIcon.png" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+            </ToolBar>
+        </Viewbox>
     </Grid>
     <Window.ContextMenu>
         <ContextMenu>
+            <MenuItem Name="ClearItem" Header="清空" Click="ClearItem_Click"/>
             <MenuItem Name="CopyItem" Header="复制" Click="CopyItem_Click" />
             <MenuItem Name="SaveItem" Header="保存" Click="SaveItem_Click" />
             <MenuItem Name="ExitItem" Header="退出" Click="ExitItem_Click" />
