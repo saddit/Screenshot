@@ -38,12 +38,12 @@
             <ToolBar ToolBarTray.IsLocked="True" x:Name="Bar" HorizontalAlignment="Left" Height="49" VerticalAlignment="Top" Width="171.707" Background="White" Cursor="Hand" MouseEnter="Bar_MouseEnter" MouseLeave="Bar_MouseLeave">
                 <Button x:Name="Pen" Content="" Height="42" VerticalAlignment="Center" Width="72" Margin="0" Cursor="Hand" IsTabStop="False" Style="{DynamicResource MyButton}" Click="Pen_Click" >
                     <Button.Background>
-                        <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/penIcon.png" Stretch="Uniform"/>
+                        <ImageBrush ImageSource="/Resources/penIcon.png" Stretch="Uniform"/>
                     </Button.Background>
                 </Button>
                 <Button x:Name="Eraser" Content="" VerticalAlignment="Center" Cursor="Hand" Style="{DynamicResource MyButton}" Width="72" Height="42" Click="Eraser_Click">
                     <Button.Background>
-                        <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/eraserIcon.png" Stretch="Uniform"/>
+                        <ImageBrush ImageSource="/Resources/eraserIcon.png" Stretch="Uniform"/>
                     </Button.Background>
                 </Button>
             </ToolBar>

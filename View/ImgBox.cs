@@ -146,7 +146,6 @@ namespace WpfApp.View
 
         private void Bar_KeyDown(object sender, KeyEventArgs e)
         {
-            Console.WriteLine(e.Key);
             if(e.Key.Equals(Key.Escape))
             {
                 if (!mode.Equals(Mode.Drag))
