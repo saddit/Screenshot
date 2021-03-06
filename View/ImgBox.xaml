@@ -34,8 +34,8 @@
     <Grid VerticalAlignment="Top" MouseWheel="Grid_MouseWheel" Margin="0,0,0,0">
         <Image x:Name="img" Source="测试用.jpg" Panel.ZIndex="2000" RenderTransformOrigin="0,0" Margin="0.083,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="2" Height="423" Width="661.917"/>
         <Canvas x:Name="Panel" HorizontalAlignment="Left" Height="423" Margin="0.083,0,0,0" VerticalAlignment="Top" Width="661.917" Panel.ZIndex="2000"/>
-        <Viewbox HorizontalAlignment="Left" Height="49" VerticalAlignment="Top" Width="171.707" Panel.ZIndex="2000">
-            <ToolBar ToolBarTray.IsLocked="True" x:Name="Bar" HorizontalAlignment="Left" Height="49" VerticalAlignment="Top" Width="171.707" Background="White" Cursor="Hand" MouseEnter="Bar_MouseEnter" MouseLeave="Bar_MouseLeave">
+        <Viewbox HorizontalAlignment="Left" Height="60" VerticalAlignment="Top" Width="152.707" Panel.ZIndex="2000">
+            <ToolBar ToolBarTray.IsLocked="True" x:Name="Bar" HorizontalAlignment="Left" Height="65.577" VerticalAlignment="Top" Width="165.111" Background="White" Cursor="Hand" MouseEnter="Bar_MouseEnter" MouseLeave="Bar_MouseLeave">
                 <Button x:Name="Pen" Content="" Height="42" VerticalAlignment="Center" Width="72" Margin="0" Cursor="Hand" IsTabStop="False" Style="{DynamicResource MyButton}" Click="Pen_Click" >
                     <Button.Background>
                         <ImageBrush ImageSource="/Resources/penIcon.png" Stretch="Uniform"/>
