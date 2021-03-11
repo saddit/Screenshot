@@ -134,6 +134,7 @@
     <Compile Include="View\ImgBox.xaml.cs">
       <DependentUpon>ImgBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\KeyboardHook.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -163,7 +164,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Moudle\" />
-    <Folder Include="ViewMoudle\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\测试用.jpg" />

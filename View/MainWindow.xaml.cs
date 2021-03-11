@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using WpfApp.View;
 
 namespace WpfApp
 {
@@ -17,11 +18,16 @@ namespace WpfApp
     public partial class MainWindow : Window
     {
         private NotifyIcon notifyIcon;
+        private KeyboardHook keyHook;
 
         public MainWindow()
         {
             InitializeComponent();
             InitNotifyIcon();
+
+            keyHook = new KeyboardHook();
+            keyHook.KeyDownEvent += new System.Windows.Forms.KeyEventHandler(Awake);
+            keyHook.Start();
 
             this.ResizeMode = ResizeMode.NoResize;
 
@@ -45,17 +51,20 @@ namespace WpfApp
             notifyIcon.Icon = Properties.Resources.logo;
             notifyIcon.Visible = true;
             notifyIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(Awake);
-
+                
             System.Windows.Forms.MenuItem quitMenuItem = new System.Windows.Forms.MenuItem("退出");
             System.Windows.Forms.MenuItem hideAllItem = new System.Windows.Forms.MenuItem("隐藏全部");
             System.Windows.Forms.MenuItem showAllItem = new System.Windows.Forms.MenuItem("显示全部");
+            System.Windows.Forms.MenuItem startItem = new System.Windows.Forms.MenuItem("开始截图");
+            startItem.Shortcut = Shortcut.CtrlQ;
 
             quitMenuItem.Click += new EventHandler(quitMenuItem_Click);
             hideAllItem.Click += new EventHandler((o, e) => EnumAllBox("hide"));
             showAllItem.Click += new EventHandler((o, e) => EnumAllBox("show"));
+            startItem.Click += new EventHandler((o, e) => this.Show());
 
             //将上面的自选项加入到parentMenuitem中。
-            System.Windows.Forms.MenuItem[] parentMenuitem = new System.Windows.Forms.MenuItem[] { hideAllItem, showAllItem, quitMenuItem };
+            System.Windows.Forms.MenuItem[] parentMenuitem = new System.Windows.Forms.MenuItem[] { startItem, hideAllItem, showAllItem, quitMenuItem };
             //为notifyIconContextMenu。
             notifyIcon.ContextMenu = new System.Windows.Forms.ContextMenu(parentMenuitem);
             this.ShowInTaskbar = false;
@@ -199,6 +208,15 @@ namespace WpfApp
             hasOpen.Add(win);
         }
 
+        private void Awake(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Q && System.Windows.Forms.Control.ModifierKeys == Keys.Control)
+            {
+                this.Show();
+            }
+           
+        }
+
         private void Awake(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -210,6 +228,11 @@ namespace WpfApp
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             notifyIcon.Dispose();
+        }
+
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            Console.WriteLine(e.Key);
         }
     }
 }

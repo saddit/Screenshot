@@ -30,6 +30,8 @@ namespace WpfApp.View
         public ImgBox(ImageSource image, double width, double height)
         {
             InitializeComponent();
+            width *= 1.1;
+            height *= 1.1;
             this.Width = width;
             this.Height = height;
             this.MaxHeight = SystemParameters.PrimaryScreenHeight;
