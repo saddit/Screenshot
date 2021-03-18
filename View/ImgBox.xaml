@@ -54,6 +54,7 @@
             <MenuItem Name="ClearItem" Header="清空" Click="ClearItem_Click"/>
             <MenuItem Name="CopyItem" Header="复制" Click="CopyItem_Click" />
             <MenuItem Name="SaveItem" Header="保存" Click="SaveItem_Click" />
+            <MenuItem Name="PenBarItem" Header="开关画笔功能" Click="PenBarItem_Click"/>
             <MenuItem Name="ExitItem" Header="退出" Click="ExitItem_Click" />
         </ContextMenu>
     </Window.ContextMenu>

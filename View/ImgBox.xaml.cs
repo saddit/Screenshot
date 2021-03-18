@@ -112,5 +112,17 @@ namespace WpfApp.View
         {
             this.Panel.Children.Clear();
         }
+
+        private void PenBarItem_Click(object sender, RoutedEventArgs e)
+        {
+            if(Bar.IsVisible)
+            {
+                Bar.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                Bar.Visibility = Visibility.Visible;
+            }
+        }
     }
 }
