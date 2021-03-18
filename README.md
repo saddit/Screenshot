@@ -17,7 +17,7 @@
 基于 .NET 4.5 ，电脑上需装有 .NET 4.5 或以上的Windows平台运行环境。
 
 - 项目为 WPF Application
-- 部分代码使用了Winform已经Win32下的API
+- 部分代码使用了Winform以及Win32下的API
 
 ### Future
 
