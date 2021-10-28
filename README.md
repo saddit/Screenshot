@@ -1,5 +1,7 @@
 # Screenshot
 
+[点击下载最新版](https://github.com/838239178/Screenshot/releases/download/0.3.3/screenshot.exe)
+
 ## 简介
 
 ### 功能
