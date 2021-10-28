@@ -2,6 +2,8 @@
 
 [点击下载最新版](https://github.com/838239178/Screenshot/releases/download/0.3.3/screenshot.exe)
 
+> ⚠️ 由于快捷键功能使用了系统键盘HOOK 可能导致杀毒软件报错 **软件完全开源 不存在任何违法违规操作** 请将软件手动加入白名单
+
 ## 简介
 
 ### 功能
